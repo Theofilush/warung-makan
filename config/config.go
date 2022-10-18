@@ -5,12 +5,11 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/subosito/gotenv"
 )
 
-func init() {
-	gotenv.Load()
-}
+// func init() {
+// 	gotenv.Load()
+// }
 
 type ApiConfig struct {
 	ApiPort string
