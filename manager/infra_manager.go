@@ -18,9 +18,8 @@ type infraManager struct {
 	cfg config.Config
 }
 
-//sslmode=disable lokalnya
 func (i *infraManager) initDb() {
-	psqlconn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require", i.cfg.Host, i.cfg.Port, i.cfg.User, i.cfg.Password, i.cfg.Name)
+	psqlconn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", i.cfg.Host, i.cfg.Port, i.cfg.User, i.cfg.Password, i.cfg.Name)
 	db, err := sql.Open("postgres", psqlconn)
 	if err != nil {
 		panic(err)

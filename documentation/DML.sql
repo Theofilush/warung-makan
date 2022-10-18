@@ -101,7 +101,7 @@ INSERT INTO public.m_table(
 	(13, '13', 1),
 	(14, '1', 1),
 	(15, '15', 1);
-
+UPDATE m_customer set id=7 where id='!'
 
 SELECT * FROM m_customer;
 SELECT * FROM m_employee;
