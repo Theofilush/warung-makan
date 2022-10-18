@@ -3,7 +3,7 @@ package customer
 import (
 	"database/sql"
 
-	"enigmacamp.com/final-project/model"
+	"github.com/Theofilush/warung-makan/model"
 )
 
 type CustomerRepository interface {

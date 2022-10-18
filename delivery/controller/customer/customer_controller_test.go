@@ -8,7 +8,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"enigmacamp.com/final-project/model"
+	"github.com/Theofilush/warung-makan/model"
 
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"

@@ -1,6 +1,6 @@
 package manager
 
-import "enigmacamp.com/final-project/usecase/customer"
+import "github.com/Theofilush/warung-makan/usecase/customer"
 
 type UseCaseManager interface {
 	CustomerUseCase() customer.CustomerUsecase

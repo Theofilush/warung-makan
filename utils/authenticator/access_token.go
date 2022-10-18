@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"enigmacamp.com/final-project/config"
-	"enigmacamp.com/final-project/model"
+	"github.com/Theofilush/warung-makan/config"
+	"github.com/Theofilush/warung-makan/model"
 
 	"github.com/golang-jwt/jwt/v4"
 )

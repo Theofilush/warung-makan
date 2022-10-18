@@ -3,9 +3,9 @@ package customer
 import (
 	"net/http"
 
-	"enigmacamp.com/final-project/model"
-	"enigmacamp.com/final-project/usecase/customer"
-	"enigmacamp.com/final-project/utils"
+	"github.com/Theofilush/warung-makan/model"
+	"github.com/Theofilush/warung-makan/usecase/customer"
+	"github.com/Theofilush/warung-makan/utils"
 	"github.com/gin-gonic/gin"
 )
 

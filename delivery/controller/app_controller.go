@@ -3,9 +3,11 @@ package controller
 import (
 	"net/http"
 
-	"enigmacamp.com/final-project/delivery/middleware"
-	"enigmacamp.com/final-project/model"
-	"enigmacamp.com/final-project/usecase"
+	"github.com/Theofilush/warung-makan/delivery/middleware"
+	"github.com/Theofilush/warung-makan/model"
+	"github.com/Theofilush/warung-makan/usecase"
+
+	// "github.com/Theofilush/warung-makan/swagger/swagger"
 
 	"github.com/gin-gonic/gin"
 )
@@ -49,5 +51,6 @@ func NewAppController(routerGroup *gin.RouterGroup, authUseCase usecase.AuthUseC
 	controller.rg.POST("/auth", controller.userAuth)
 	protectedGroup := controller.rg.Group("/protected", tokenMdw.RequireToken())
 	protectedGroup.GET("/user", controller.getCustomer)
+
 	return &controller
 }

@@ -3,9 +3,9 @@ package delivery
 import (
 	"fmt"
 
-	"enigmacamp.com/final-project/config"
-	"enigmacamp.com/final-project/manager"
-	"enigmacamp.com/final-project/model"
+	"github.com/Theofilush/warung-makan/config"
+	"github.com/Theofilush/warung-makan/manager"
+	"github.com/Theofilush/warung-makan/model"
 )
 
 type Cli struct {

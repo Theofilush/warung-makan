@@ -6,8 +6,8 @@ import (
 	"log"
 	"testing"
 
-	"enigmacamp.com/final-project/model"
 	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/Theofilush/warung-makan/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )

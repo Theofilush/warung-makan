@@ -1,6 +1,6 @@
 package manager
 
-import "enigmacamp.com/final-project/repository/customer"
+import "github.com/Theofilush/warung-makan/repository/customer"
 
 type RepositoryManager interface {
 	CustomerRepo() customer.CustomerRepository

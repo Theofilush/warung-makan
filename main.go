@@ -1,7 +1,7 @@
 package main
 
 import (
-	"enigmacamp.com/final-project/delivery"
+	"github.com/Theofilush/warung-makan/delivery"
 )
 
 func main() {

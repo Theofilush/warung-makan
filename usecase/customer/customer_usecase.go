@@ -1,8 +1,8 @@
 package customer
 
 import (
-	"enigmacamp.com/final-project/model"
-	"enigmacamp.com/final-project/repository/customer"
+	"github.com/Theofilush/warung-makan/model"
+	"github.com/Theofilush/warung-makan/repository/customer"
 )
 
 type CustomerUsecase interface {

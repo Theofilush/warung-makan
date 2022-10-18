@@ -3,13 +3,13 @@ package delivery
 import (
 	"fmt"
 
-	"enigmacamp.com/final-project/config"
-	"enigmacamp.com/final-project/delivery/controller"
-	"enigmacamp.com/final-project/delivery/controller/customer"
-	"enigmacamp.com/final-project/delivery/middleware"
-	"enigmacamp.com/final-project/manager"
-	"enigmacamp.com/final-project/usecase"
-	"enigmacamp.com/final-project/utils/authenticator"
+	"github.com/Theofilush/warung-makan/config"
+	"github.com/Theofilush/warung-makan/delivery/controller"
+	"github.com/Theofilush/warung-makan/delivery/controller/customer"
+	"github.com/Theofilush/warung-makan/delivery/middleware"
+	"github.com/Theofilush/warung-makan/manager"
+	"github.com/Theofilush/warung-makan/usecase"
+	"github.com/Theofilush/warung-makan/utils/authenticator"
 	"github.com/gin-gonic/gin"
 )
 

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"enigmacamp.com/final-project/model"
+	"github.com/Theofilush/warung-makan/model"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

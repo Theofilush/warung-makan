@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"enigmacamp.com/final-project/config"
+	"github.com/Theofilush/warung-makan/config"
 	_ "github.com/lib/pq"
 )
 

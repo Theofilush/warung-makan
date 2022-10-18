@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"enigmacamp.com/final-project/utils/authenticator"
+	"github.com/Theofilush/warung-makan/utils/authenticator"
 
 	"github.com/gin-gonic/gin"
 )

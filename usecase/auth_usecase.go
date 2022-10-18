@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	"enigmacamp.com/final-project/model"
-	"enigmacamp.com/final-project/utils/authenticator"
+	"github.com/Theofilush/warung-makan/model"
+	"github.com/Theofilush/warung-makan/utils/authenticator"
 )
 
 type AuthUseCase interface {
