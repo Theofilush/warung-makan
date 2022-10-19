@@ -115,7 +115,7 @@ func NewCustomerController(routerGroup *gin.RouterGroup, usecaseCust useCaseCust
 	protectedGroup.DELETE("customer/:id", controllerr.DeleteCustomer)
 
 	// ro := gin.Default()
-	protectedGroup.Any("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	controllerr.rgg.Any("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	// r.Run(":8080")
 	return &controllerr
 }

@@ -1,316 +1,274 @@
 {
-    "openapi": "3.1.0",
-    "info": {
-      "title": "Warung Makan",
-      "contact": {},
-      "version": "1.0"
-    },
-    "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
-    "servers": [
-      {
-        "url": "http://localhost:8181",
-        "variables": {}
-      }
-    ],
-    "paths": {
-      "/customer": {
-        "get": {
-          "tags": [
-            "Costumer"
-          ],
-          "summary": "List Customer",
-          "operationId": "ListCustomer",
-          "parameters": [],
-          "responses": {
-            "200": {
-              "description": "",
-              "headers": {}
-            }
-          },
-          "deprecated": false
-        },
-        "post": {
-          "tags": [
-            "Costumer"
-          ],
-          "summary": "New Customer",
-          "operationId": "NewCustomer",
-          "parameters": [],
-          "requestBody": {
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Warung Makan",
+    "contact": {}
+  },
+  "host": "localhost:8181",
+  "basePath": "/v1",
+  "securityDefinitions": {},
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/private/customer": {
+      "get": {
+        "summary": "List Customer",
+        "tags": [
+          "Costumer"
+        ],
+        "operationId": "ListCustomer",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/NewCustomerRequest"
-                    },
-                    {
-                      "examples": [
-                        {
-                          "id": "1",
-                          "name": "Vicky",
-                          "email": "vick@gmail.com",
-                          "address": "jakarta"
-                        }
-                      ]
-                    }
-                  ],
-                  "contentMediaType": "application/json"
-                },
-                "example": {
-                  "id": "1",
-                  "name": "Vicky",
-                  "email": "vick@gmail.com",
-                  "address": "jakarta"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "",
-              "headers": {}
-            }
-          },
-          "deprecated": false
+            "headers": {}
+          }
         },
-        "put": {
-          "tags": [
-            "Costumer"
-          ],
-          "summary": "Update Customer",
-          "operationId": "UpdateCustomer",
-          "parameters": [],
-          "requestBody": {
+        "security": []
+      },
+      "post": {
+        "summary": "New Customer",
+        "tags": [
+          "Costumer"
+        ],
+        "operationId": "NewCustomer",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
             "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string",
-                  "examples": [
-                    "{\r\n   \"id\":5\",\r\n   \"name\":\"Doni\",\r\n   \"email\": \"email@gmail.com\",\r\n   \"address\":\"Palembang\"\r\n}"
-                  ],
-                  "contentMediaType": "text/plain"
-                },
-                "example": "{\r\n   \"id\":5\",\r\n   \"name\":\"Doni\",\r\n   \"email\": \"email@gmail.com\",\r\n   \"address\":\"Palembang\"\r\n}"
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "",
-              "headers": {}
+            "schema": {
+              "$ref": "#/definitions/NewCustomerRequest"
             }
-          },
-          "deprecated": false
-        },
-        "parameters": []
-      },
-      "/customer/{id}": {
-        "get": {
-          "tags": [
-            "Costumer"
-          ],
-          "summary": "Find Customer By ID",
-          "operationId": "FindCustomerByID",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "description": "",
-              "required": true,
-              "style": "simple",
-              "schema": {
-                "type": "string",
-                "examples": [
-                  "null"
-                ]
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "",
-              "headers": {}
-            }
-          },
-          "deprecated": false
-        },
-        "delete": {
-          "tags": [
-            "Costumer"
-          ],
-          "summary": "Delete Customer",
-          "operationId": "DeleteCustomer",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "description": "",
-              "required": true,
-              "style": "simple",
-              "schema": {
-                "type": "string",
-                "examples": [
-                  "null"
-                ]
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "",
-              "headers": {}
-            }
-          },
-          "deprecated": false
-        },
-        "parameters": []
-      },
-      "/enigma/auth": {
-        "post": {
-          "tags": [
-            "Authenticate"
-          ],
-          "summary": "Auth",
-          "operationId": "Auth",
-          "parameters": [],
-          "requestBody": {
+          }
+        ],
+        "responses": {
+          "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/AuthRequest"
-                    },
-                    {
-                      "examples": [
-                        {
-                          "username": "enigma",
-                          "password": "123"
-                        }
-                      ]
-                    }
-                  ],
-                  "contentMediaType": "application/json"
-                },
-                "example": {
-                  "username": "enigma",
-                  "password": "123"
-                }
-              }
-            },
-            "required": true
-          },
-          "responses": {
-            "200": {
-              "description": "",
-              "headers": {}
-            }
-          },
-          "deprecated": false
-        },
-        "parameters": []
-      },
-      "/enigma/protected/user": {
-        "get": {
-          "tags": [
-            "Authenticate"
-          ],
-          "summary": "Test Login User",
-          "operationId": "TestLoginUser",
-          "parameters": [],
-          "responses": {
-            "200": {
-              "description": "",
-              "headers": {}
-            }
-          },
-          "deprecated": false,
-          "security": [
-            {
-              "bearer": []
-            }
-          ]
-        },
-        "parameters": []
-      }
-    },
-    "components": {
-      "schemas": {
-        "NewCustomerRequest": {
-          "title": "NewCustomerRequest",
-          "required": [
-            "id",
-            "name",
-            "email",
-            "address"
-          ],
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "string"
-            },
-            "name": {
-              "type": "string"
-            },
-            "email": {
-              "type": "string"
-            },
-            "address": {
-              "type": "string"
-            }
-          },
-          "examples": [
-            {
-              "id": "1",
-              "name": "Vicky",
-              "email": "vick@gmail.com",
-              "address": "jakarta"
-            }
-          ]
-        },
-        "AuthRequest": {
-          "title": "AuthRequest",
-          "required": [
-            "username",
-            "password"
-          ],
-          "type": "object",
-          "properties": {
-            "username": {
-              "type": "string"
-            },
-            "password": {
-              "type": "string"
-            }
-          },
-          "examples": [
-            {
-              "username": "enigma",
-              "password": "123"
-            }
-          ]
+            "headers": {}
+          }
         }
       },
-      "securitySchemes": {
-        "bearer": {
-          "type": "http",
-          "scheme": "bearer"
+      "put": {
+        "summary": "Update Customer",
+        "tags": [
+          "Costumer"
+        ],
+        "operationId": "UpdateCustomer",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": "{\r\n   \"id\":5\",\r\n   \"name\":\"Doni\",\r\n   \"email\": \"email@gmail.com\",\r\n   \"address\":\"Palembang\"\r\n}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
         }
       }
     },
-    "security": [],
-    "tags": [
-      {
-        "name": "Costumer"
+    "/private/customer/{id}": {
+      "get": {
+        "summary": "Find Customer By ID",
+        "tags": [
+          "Costumer"
+        ],
+        "operationId": "FindCustomerByID",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
       },
-      {
-        "name": "Authenticate"
+      "delete": {
+        "summary": "Delete Customer",
+        "tags": [
+          "Costumer"
+        ],
+        "operationId": "DeleteCustomer",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
       }
-    ]
-  }
+    },
+    "/auth": {
+      "post": {
+        "summary": "Auth",
+        "tags": [
+          "Authenticate"
+        ],
+        "operationId": "Auth",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AuthRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "definitions": {
+    "NewCustomerRequest": {
+      "title": "NewCustomerRequest",
+      "example": {
+        "id": "1",
+        "name": "Vicky",
+        "email": "vick@gmail.com",
+        "address": "jakarta"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "address"
+      ]
+    },
+    "AuthRequest": {
+      "title": "AuthRequest",
+      "example": {
+        "username": "enigma",
+        "password": "123"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "password"
+      ]
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Costumer"
+    },
+    {
+      "name": "Authenticate"
+    }
+  ]
+}
