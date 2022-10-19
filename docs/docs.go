@@ -10,10 +10,10 @@ const docTemplate_swagger = `{
 	  "contact": {}
 	},
 	"host": "localhost:8181",
-	"basePath": "/",
+	"basePath": "/v1",
 	"securityDefinitions": {},
 	"schemes": [
-	  "http"
+	  "https"
 	],
 	"consumes": [
 	  "application/json"
@@ -22,7 +22,7 @@ const docTemplate_swagger = `{
 	  "application/json"
 	],
 	"paths": {
-	  "/customer": {
+	  "/private/customer": {
 		"get": {
 		  "summary": "List Customer",
 		  "tags": [
@@ -33,21 +33,14 @@ const docTemplate_swagger = `{
 		  "produces": [
 			"application/json"
 		  ],
-		  "parameters": [
-			{
-			  "name": "Authorization",
-			  "in": "header",
-			  "required": false,
-			  "default": "Bearer {token}",
-			  "type": "string"
-			}
-		  ],
+		  "parameters": [],
 		  "responses": {
 			"200": {
 			  "description": "",
 			  "headers": {}
 			}
-		  }
+		  },
+		  "security": []
 		},
 		"post": {
 		  "summary": "New Customer",
@@ -121,7 +114,7 @@ const docTemplate_swagger = `{
 		  }
 		}
 	  },
-	  "/customer/{id}": {
+	  "/private/customer/{id}": {
 		"get": {
 		  "summary": "Find Customer By ID",
 		  "tags": [
@@ -189,7 +182,7 @@ const docTemplate_swagger = `{
 		  }
 		}
 	  },
-	  "/enigma/auth": {
+	  "/auth": {
 		"post": {
 		  "summary": "Auth",
 		  "tags": [
@@ -202,13 +195,6 @@ const docTemplate_swagger = `{
 		  ],
 		  "parameters": [
 			{
-			  "name": "Authorization",
-			  "in": "header",
-			  "required": false,
-			  "default": "Bearer {token}",
-			  "type": "string"
-			},
-			{
 			  "name": "Body",
 			  "in": "body",
 			  "required": true,
@@ -218,26 +204,6 @@ const docTemplate_swagger = `{
 			  }
 			}
 		  ],
-		  "responses": {
-			"200": {
-			  "description": "",
-			  "headers": {}
-			}
-		  }
-		}
-	  },
-	  "/enigma/protected/user": {
-		"get": {
-		  "summary": "Test Login User",
-		  "tags": [
-			"Authenticate"
-		  ],
-		  "operationId": "TestLoginUser",
-		  "deprecated": false,
-		  "produces": [
-			"application/json"
-		  ],
-		  "parameters": [],
 		  "responses": {
 			"200": {
 			  "description": "",
