@@ -3,19 +3,48 @@ package customer
 import (
 	"net/http"
 
+	"github.com/Theofilush/warung-makan/delivery/middleware"
+	_ "github.com/Theofilush/warung-makan/docs"
 	"github.com/Theofilush/warung-makan/model"
-	"github.com/Theofilush/warung-makan/usecase/customer"
+
+	//ucc "github.com/Theofilush/warung-makan/usecase"
+	useCaseCust "github.com/Theofilush/warung-makan/usecase/customer"
 	"github.com/Theofilush/warung-makan/utils"
 	"github.com/gin-gonic/gin"
+
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 type CustomerController struct {
-	router  *gin.Engine
-	usecase customer.CustomerUsecase
+	// router          *gin.Engine
+	rgg             *gin.RouterGroup
+	customerUsecase useCaseCust.CustomerUsecase
+	// authUseCase     ucc.AuthUseCase
+}
+
+func (cc *CustomerController) userAuthh(ctx *gin.Context) {
+	var user model.UserCredential
+	if err2 := ctx.ShouldBindJSON(&user); err2 != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"message": "can't bind struct",
+		})
+		return
+	}
+
+	token, err := cc.customerUsecase.UserAuth(user)
+
+	if err != nil {
+		ctx.AbortWithStatus(401)
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{
+		"token": token,
+	})
 }
 
 func (cc *CustomerController) getAllCustomer(ctx *gin.Context) {
-	customers, err := cc.usecase.GetAllCustomer()
+	customers, err := cc.customerUsecase.GetAllCustomer()
 	if err != nil {
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"err": err.Error()})
 		return
@@ -24,7 +53,7 @@ func (cc *CustomerController) getAllCustomer(ctx *gin.Context) {
 }
 func (cc *CustomerController) getCustomerById(ctx *gin.Context) {
 	id := ctx.Param("id")
-	customers, err := cc.usecase.FindCustomerById(id)
+	customers, err := cc.customerUsecase.FindCustomerById(id)
 	if err != nil {
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"err": err.Error()})
 		return
@@ -39,7 +68,7 @@ func (cc *CustomerController) registerCustomer(ctx *gin.Context) {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"err": err.Error()})
 		return
 	}
-	if err := cc.usecase.RegisterCustomer(customer); err != nil {
+	if err := cc.customerUsecase.RegisterCustomer(customer); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"err": err.Error()})
 		return
 	}
@@ -52,7 +81,7 @@ func (cc *CustomerController) UpdateCustomer(ctx *gin.Context) {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"err": err.Error()})
 		return
 	}
-	if err := cc.usecase.UpdateCustomer(customer); err != nil {
+	if err := cc.customerUsecase.UpdateCustomer(customer); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"err": err.Error()})
 		return
 	}
@@ -61,7 +90,7 @@ func (cc *CustomerController) UpdateCustomer(ctx *gin.Context) {
 
 func (cc *CustomerController) DeleteCustomer(ctx *gin.Context) {
 	id := ctx.Param("id")
-	err := cc.usecase.DeleteCustomer(id)
+	err := cc.customerUsecase.DeleteCustomer(id)
 	if err != nil {
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"err": err.Error()})
 		return
@@ -69,15 +98,24 @@ func (cc *CustomerController) DeleteCustomer(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, err)
 }
 
-func NewCustomerController(r *gin.Engine, usecase customer.CustomerUsecase) *CustomerController {
-	controller := CustomerController{
-		router:  r,
-		usecase: usecase,
+func NewCustomerController(routerGroup *gin.RouterGroup, usecaseCust useCaseCust.CustomerUsecase, tokenMdw middleware.AuthTokenMiddleware) *CustomerController {
+	controllerr := CustomerController{
+		rgg:             routerGroup,
+		customerUsecase: usecaseCust,
 	}
-	r.GET("/customer", controller.getAllCustomer)
-	r.GET("/customer/:id", controller.getCustomerById)
-	r.POST("/customer", controller.registerCustomer)
-	r.PUT("/customer", controller.UpdateCustomer)
-	r.DELETE("customer/:id", controller.DeleteCustomer)
-	return &controller
+
+	controllerr.rgg.POST("/auth", controllerr.userAuthh)
+
+	protectedGroup := controllerr.rgg.Group("/private", tokenMdw.RequireToken())
+
+	protectedGroup.GET("/customer", controllerr.getAllCustomer)
+	protectedGroup.GET("/customer/:id", controllerr.getCustomerById)
+	protectedGroup.POST("/customer", controllerr.registerCustomer)
+	protectedGroup.PUT("/customer", controllerr.UpdateCustomer)
+	protectedGroup.DELETE("customer/:id", controllerr.DeleteCustomer)
+
+	// ro := gin.Default()
+	protectedGroup.Any("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	// r.Run(":8080")
+	return &controllerr
 }

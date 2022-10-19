@@ -6,6 +6,7 @@ import (
 	"github.com/Theofilush/warung-makan/config"
 	"github.com/Theofilush/warung-makan/manager"
 	"github.com/Theofilush/warung-makan/model"
+	"github.com/Theofilush/warung-makan/utils/authenticator"
 )
 
 type Cli struct {
@@ -40,8 +41,11 @@ func (c *Cli) Run() {
 func Console() *Cli {
 	c := config.NewConfig()
 
+	tokenService := authenticator.NewAccessToken(c.TokenConfig)
+	// authUseCase := usecase.NewAuthUseCase(tokenService)
+
 	infra := manager.NewInfraManager(c)
 	repo := manager.NewRepositoryManager(infra)
-	usecase := manager.NewUseCaseManager(repo)
+	usecase := manager.NewUseCaseManager(repo, tokenService)
 	return &Cli{useCaseManager: usecase}
 }

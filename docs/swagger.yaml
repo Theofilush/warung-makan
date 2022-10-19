@@ -1,0 +1,195 @@
+openapi: 3.0.0
+info:
+  title: Warung Makan
+  contact: {}
+  version: '1.0'
+servers:
+  - url: http://localhost:8181
+    variables: {}
+paths:
+  /customer:
+    get:
+      tags:
+        - Costumer
+      summary: List Customer
+      operationId: ListCustomer
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - Costumer
+      summary: New Customer
+      operationId: NewCustomer
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/NewCustomerRequest'
+                - example:
+                    id: '1'
+                    name: Vicky
+                    email: vick@gmail.com
+                    address: jakarta
+            example:
+              id: '1'
+              name: Vicky
+              email: vick@gmail.com
+              address: jakarta
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    put:
+      tags:
+        - Costumer
+      summary: Update Customer
+      operationId: UpdateCustomer
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: "{\r\n   \"id\":5\",\r\n   \"name\":\"Doni\",\r\n   \"email\": \"email@gmail.com\",\r\n   \"address\":\"Palembang\"\r\n}"
+            example: "{\r\n   \"id\":5\",\r\n   \"name\":\"Doni\",\r\n   \"email\": \"email@gmail.com\",\r\n   \"address\":\"Palembang\"\r\n}"
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /customer/{id}:
+    get:
+      tags:
+        - Costumer
+      summary: Find Customer By ID
+      operationId: FindCustomerByID
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: 'null'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Costumer
+      summary: Delete Customer
+      operationId: DeleteCustomer
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: 'null'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /enigma/auth:
+    post:
+      tags:
+        - Authenticate
+      summary: Auth
+      operationId: Auth
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/AuthRequest'
+                - example:
+                    username: enigma
+                    password: '123'
+            example:
+              username: enigma
+              password: '123'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /enigma/protected/user:
+    get:
+      tags:
+        - Authenticate
+      summary: Test Login User
+      operationId: TestLoginUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+components:
+  schemas:
+    NewCustomerRequest:
+      title: NewCustomerRequest
+      required:
+        - id
+        - name
+        - email
+        - address
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+      example:
+        id: '1'
+        name: Vicky
+        email: vick@gmail.com
+        address: jakarta
+    AuthRequest:
+      title: AuthRequest
+      required:
+        - username
+        - password
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      example:
+        username: enigma
+        password: '123'
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+  - name: Costumer
+  - name: Authenticate

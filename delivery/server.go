@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/Theofilush/warung-makan/config"
-	"github.com/Theofilush/warung-makan/delivery/controller"
 	"github.com/Theofilush/warung-makan/delivery/controller/customer"
 	"github.com/Theofilush/warung-makan/delivery/middleware"
 	"github.com/Theofilush/warung-makan/manager"
@@ -29,21 +28,24 @@ func (s *Server) Run() {
 	}
 }
 func (s *Server) initController() {
-	publicRoute := s.engine.Group("/enigma")
+	// publicRoute := s.engine.Group("/v1")
+	publicRoute2 := s.engine.Group("/v2")
 	tokenMdw := middleware.NewTokenValidator(s.tokenService)
-	controller.NewAppController(publicRoute, s.authUseCase, tokenMdw)
 
-	customer.NewCustomerController(s.engine, s.useCaseManager.CustomerUseCase())
+	// controller.NewAppController(publicRoute, s.authUseCase, tokenMdw)
+
+	customer.NewCustomerController(publicRoute2, s.useCaseManager.CustomerUseCase(), tokenMdw)
 }
 func NewServer() *Server {
 	c := config.NewConfig()
 	r := gin.Default()
-	infra := manager.NewInfraManager(c)
-	repo := manager.NewRepositoryManager(infra)
-	usecasee := manager.NewUseCaseManager(repo)
 
 	tokenService := authenticator.NewAccessToken(c.TokenConfig)
 	authUseCase := usecase.NewAuthUseCase(tokenService)
+
+	infra := manager.NewInfraManager(c)
+	repo := manager.NewRepositoryManager(infra)
+	usecasee := manager.NewUseCaseManager(repo, tokenService)
 
 	if c.ApiHost == "" || c.ApiPort == "" {
 		panic("No Host or port define")

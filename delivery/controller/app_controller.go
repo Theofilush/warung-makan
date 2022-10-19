@@ -49,6 +49,7 @@ func NewAppController(routerGroup *gin.RouterGroup, authUseCase usecase.AuthUseC
 	}
 
 	controller.rg.POST("/auth", controller.userAuth)
+
 	protectedGroup := controller.rg.Group("/protected", tokenMdw.RequireToken())
 	protectedGroup.GET("/user", controller.getCustomer)
 
