@@ -1,1 +1,1 @@
-web: final-project
+web: bin/warung-makan
