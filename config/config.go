@@ -55,7 +55,7 @@ func (c Config) readConfigFile() Config {
 		ApplicationName:     "ENIGMA",
 		JwtSignatureKey:     "P@ssword",
 		JwtSigningMethod:    jwt.SigningMethodHS256,
-		AccessTokenLifeTime: 60 * time.Second,
+		AccessTokenLifeTime: 60 * time.Minute,
 	}
 	return c
 }
