@@ -26,6 +26,14 @@ type Server struct {
 	tokenService   authenticator.AccessToken
 }
 
+func (s *Server) Run() {
+	s.initController()
+	err := s.engine.Run(s.host)
+	if err != nil {
+		panic(err)
+	}
+}
+
 func NewServer() *Server {
 	c := config.NewConfig()
 	r := gin.Default()
@@ -76,12 +84,4 @@ func (s *Server) initController() {
 
 	customer.NewCustomerController(publicRoute, s.useCaseManager.CustomerUseCase(), tokenMdw)
 	menu.NewMenuController(publicRoute, s.useCaseManager.MenuUseCase(), tokenMdw)
-}
-
-func (s *Server) Run() {
-	s.initController()
-	err := s.engine.Run(s.host)
-	if err != nil {
-		panic(err)
-	}
 }
