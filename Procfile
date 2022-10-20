@@ -1,1 +1,1 @@
-web: warung-makan
+web: bin/warung-makan
