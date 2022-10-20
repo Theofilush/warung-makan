@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/Theofilush/warung-makan/utils/authenticator"
@@ -32,7 +31,7 @@ func (a *authTokenMiddleware) RequireToken() gin.HandlerFunc {
 			return
 		}
 		tokenString := strings.Replace(h.AuthorizationHeader, "Bearer ", "", -1)
-		fmt.Println(tokenString)
+		// fmt.Println(tokenString)
 		if tokenString == "" {
 			c.JSON(401, gin.H{
 				"message": "Unauthorized",

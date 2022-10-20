@@ -3,12 +3,14 @@ package manager
 import (
 	"github.com/Theofilush/warung-makan/usecase"
 	"github.com/Theofilush/warung-makan/usecase/customer"
+	"github.com/Theofilush/warung-makan/usecase/menu"
 	"github.com/Theofilush/warung-makan/utils/authenticator"
 )
 
 type UseCaseManager interface {
 	CustomerUseCase() customer.CustomerUsecase
 	AuthUseCase() usecase.AuthUseCase
+	MenuUseCase() menu.MenuUsecase
 }
 
 type useCaseManager struct {
@@ -22,6 +24,10 @@ func (u *useCaseManager) CustomerUseCase() customer.CustomerUsecase {
 
 func (u *useCaseManager) AuthUseCase() usecase.AuthUseCase {
 	return usecase.NewAuthUseCase(u.service)
+}
+
+func (u *useCaseManager) MenuUseCase() menu.MenuUsecase {
+	return menu.NewMenuUseCase(u.repoManager.MenuRepo(), u.service)
 }
 
 func NewUseCaseManager(repoManager RepositoryManager, service authenticator.AccessToken) UseCaseManager {

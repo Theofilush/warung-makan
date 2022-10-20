@@ -11,9 +11,8 @@ import (
 	useCaseCust "github.com/Theofilush/warung-makan/usecase/customer"
 	"github.com/Theofilush/warung-makan/utils"
 	"github.com/gin-gonic/gin"
-
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
+	// swaggerFiles "github.com/swaggo/files"
+	// ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 type CustomerController struct {
@@ -23,7 +22,7 @@ type CustomerController struct {
 	// authUseCase     ucc.AuthUseCase
 }
 
-func (cc *CustomerController) userAuthh(ctx *gin.Context) {
+func (cc *CustomerController) userAuth(ctx *gin.Context) {
 	var user model.UserCredential
 	if err2 := ctx.ShouldBindJSON(&user); err2 != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
@@ -104,7 +103,7 @@ func NewCustomerController(routerGroup *gin.RouterGroup, usecaseCust useCaseCust
 		customerUsecase: usecaseCust,
 	}
 
-	controllerr.rgg.POST("/auth", controllerr.userAuthh)
+	// controllerr.rgg.POST("/auth", controllerr.userAuth)
 
 	protectedGroup := controllerr.rgg.Group("/private", tokenMdw.RequireToken())
 
@@ -115,7 +114,7 @@ func NewCustomerController(routerGroup *gin.RouterGroup, usecaseCust useCaseCust
 	protectedGroup.DELETE("customer/:id", controllerr.DeleteCustomer)
 
 	// ro := gin.Default()
-	controllerr.rgg.Any("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	// controllerr.rgg.Any("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	// r.Run(":8080")
 	return &controllerr
 }

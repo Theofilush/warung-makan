@@ -1,22 +1,29 @@
 package model
 
-import "fmt"
+import (
+	"database/sql"
+	"fmt"
+)
 
-type Menu_name struct {
-	Id        string `json:"id"`
-	Menu_name string `json:"menu_name"`
-	Price     int    `json:"price"`
+type Menu struct {
+	Id        string         `json:"id"`
+	Menu_name string         `json:"menu_name"`
+	Price     int            `json:"price"`
+	Image     sql.NullString `json:"images"`
 }
 
-func (c Menu_name) String() {
-	fmt.Println(c.Id, c.Menu_name, c.Price)
+func (c Menu) String() {
+	fmt.Println(c.Id, c.Menu_name, c.Price, c.Image)
 }
 
-func NewMenu_name(id, name string, price int) Menu_name {
-	return Menu_name{
+// Body:sql.NullString{String:"", Valid:false},
+// User:sql.NullInt64{Int64:0, Valid:false}}
+func NewMenu(id, name string, image sql.NullString, price int) Menu {
+	return Menu{
 		Id:        id,
 		Menu_name: name,
 		Price:     price,
+		Image:     image,
 	}
 
 }

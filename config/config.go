@@ -31,6 +31,8 @@ type TokenConfig struct {
 	AccessTokenLifeTime time.Duration
 }
 
+// AccessTokenLifeTime time.Duration
+
 type Config struct {
 	ApiConfig
 	DbConfig
