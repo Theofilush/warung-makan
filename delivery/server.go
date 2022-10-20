@@ -40,7 +40,7 @@ func NewServer() *Server {
 	if c.ApiHost == "" || c.ApiPort == "" {
 		panic("No Host or port define")
 	}
-	host := fmt.Sprintf("%s:%s", c.ApiHost, c.ApiPort)
+	host := fmt.Sprintf(":%s", c.ApiPort)
 	return &Server{useCaseManager: usecasee, engine: r, host: host, authUseCase: authUseCase, tokenService: tokenService}
 }
 
