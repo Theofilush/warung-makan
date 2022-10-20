@@ -48,7 +48,7 @@ func (c Config) readConfigFile() Config {
 		Password: os.Getenv("DB_PASSWORD"),
 	}
 	c.ApiConfig = ApiConfig{
-		ApiPort: os.Getenv("API_PORT"),
+		ApiPort: os.Getenv("PORT"),
 		ApiHost: os.Getenv("API_HOST"),
 	}
 	c.TokenConfig = TokenConfig{
