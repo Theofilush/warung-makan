@@ -13,6 +13,7 @@ type MenuUsecase interface {
 	GetAllMenu() ([]model.Menu, error)
 	UpdateMenu(menu model.Menu) error
 	DeleteMenu(id string) error
+	FindMenuImage(image string) (model.Menu2, error)
 }
 type menuUsecase struct {
 	repo         menu.MenuRepository
@@ -37,6 +38,10 @@ func (c *menuUsecase) RegisterMenu(menu model.Menu) error {
 
 func (c *menuUsecase) FindMenuById(id string) (model.Menu, error) {
 	return c.repo.FindById(id)
+}
+
+func (c *menuUsecase) FindMenuImage(image string) (model.Menu2, error) {
+	return c.repo.FindImage(image)
 }
 
 func (c *menuUsecase) GetAllMenu() ([]model.Menu, error) {

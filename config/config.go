@@ -5,12 +5,12 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
-	// "github.com/subosito/gotenv"
+	"github.com/subosito/gotenv"
 )
 
-// func init() {
-// 	gotenv.Load()
-// }
+func init() {
+	gotenv.Load()
+}
 
 type ApiConfig struct {
 	ApiPort string
@@ -30,8 +30,6 @@ type TokenConfig struct {
 	JwtSigningMethod    *jwt.SigningMethodHMAC
 	AccessTokenLifeTime time.Duration
 }
-
-// AccessTokenLifeTime time.Duration
 
 type Config struct {
 	ApiConfig
@@ -55,7 +53,7 @@ func (c Config) readConfigFile() Config {
 		ApplicationName:     "ENIGMA",
 		JwtSignatureKey:     "P@ssword",
 		JwtSigningMethod:    jwt.SigningMethodHS256,
-		AccessTokenLifeTime: 60 * time.Minute,
+		AccessTokenLifeTime: 120 * time.Minute,
 	}
 	return c
 }

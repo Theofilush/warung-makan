@@ -12,6 +12,7 @@ type MenuRepository interface {
 	FindById(id string) (model.Menu, error)
 	Delete(id string) error
 	Update(menu model.Menu) error
+	FindImage(image string) (model.Menu2, error)
 }
 
 type menuDbRepository struct {
@@ -66,6 +67,24 @@ func (c *menuDbRepository) FindById(id string) (model.Menu, error) {
 		}
 
 		menu = model.NewMenu(id, menu_name, image, price)
+	}
+	return menu, nil
+}
+
+func (c *menuDbRepository) FindImage(image string) (model.Menu2, error) {
+	rows, err := c.db.Query("select images from m_menu where images=$1", image)
+	if err != nil {
+		return model.Menu2{}, err
+	}
+	var menu model.Menu2
+	for rows.Next() {
+		var image sql.NullString
+		err = rows.Scan(&image)
+		if err != nil {
+			panic(err)
+		}
+
+		menu = model.NewMenu2(image)
 	}
 	return menu, nil
 }

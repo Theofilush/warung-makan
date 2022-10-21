@@ -12,6 +12,10 @@ type Menu struct {
 	Image     sql.NullString `json:"images"`
 }
 
+type Menu2 struct {
+	Image sql.NullString `json:"images"`
+}
+
 func (c Menu) String() {
 	fmt.Println(c.Id, c.Menu_name, c.Price, c.Image)
 }
@@ -24,6 +28,13 @@ func NewMenu(id, name string, image sql.NullString, price int) Menu {
 		Menu_name: name,
 		Price:     price,
 		Image:     image,
+	}
+
+}
+
+func NewMenu2(image sql.NullString) Menu2 {
+	return Menu2{
+		Image: image,
 	}
 
 }

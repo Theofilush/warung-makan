@@ -7,19 +7,14 @@ import (
 	_ "github.com/Theofilush/warung-makan/docs"
 	"github.com/Theofilush/warung-makan/model"
 
-	//ucc "github.com/Theofilush/warung-makan/usecase"
 	useCaseCust "github.com/Theofilush/warung-makan/usecase/customer"
 	"github.com/Theofilush/warung-makan/utils"
 	"github.com/gin-gonic/gin"
-	// swaggerFiles "github.com/swaggo/files"
-	// ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 type CustomerController struct {
-	// router          *gin.Engine
 	rgg             *gin.RouterGroup
 	customerUsecase useCaseCust.CustomerUsecase
-	// authUseCase     ucc.AuthUseCase
 }
 
 func (cc *CustomerController) userAuth(ctx *gin.Context) {
@@ -103,8 +98,6 @@ func NewCustomerController(routerGroup *gin.RouterGroup, usecaseCust useCaseCust
 		customerUsecase: usecaseCust,
 	}
 
-	// controllerr.rgg.POST("/auth", controllerr.userAuth)
-
 	protectedGroup := controllerr.rgg.Group("/private", tokenMdw.RequireToken())
 
 	protectedGroup.GET("/customer", controllerr.getAllCustomer)
@@ -113,8 +106,5 @@ func NewCustomerController(routerGroup *gin.RouterGroup, usecaseCust useCaseCust
 	protectedGroup.PUT("/customer", controllerr.UpdateCustomer)
 	protectedGroup.DELETE("customer/:id", controllerr.DeleteCustomer)
 
-	// ro := gin.Default()
-	// controllerr.rgg.Any("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	// r.Run(":8080")
 	return &controllerr
 }

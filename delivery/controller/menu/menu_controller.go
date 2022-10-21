@@ -59,6 +59,20 @@ func (cc *MenuController) getMenuById(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, menus)
 }
 
+func (cc *MenuController) getMenuImage(ctx *gin.Context) {
+	param := ctx.Param("image")
+	menus, err := cc.menuUsecase.FindMenuImage(param)
+
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"err": err.Error()})
+		return
+	}
+
+	ctx.File("files/" + param)
+
+	ctx.JSON(http.StatusOK, menus)
+}
+
 func (cc *MenuController) registerMenu(ctx *gin.Context) {
 	var menu model.Menu
 
@@ -132,6 +146,7 @@ func NewMenuController(routerGroup *gin.RouterGroup, usecaseMen useCaseMen.MenuU
 	protectedGroup.POST("/menu", controllerr.registerMenu)
 	protectedGroup.PUT("/menu", controllerr.UpdateMenu)
 	protectedGroup.DELETE("menu/:id", controllerr.DeleteMenu)
+	controllerr.rgg.GET("/menu/images/:image", controllerr.getMenuImage)
 	// protectedGroup.POST("upload", controllerr.UploadMenu)
 
 	return &controllerr
