@@ -21,7 +21,7 @@ CREATE TABLE m_customer(
 );
 
 CREATE TABLE m_order(
-	id serial PRIMARY KEY NOT NULL,
+	id varchar(250) PRIMARY KEY NOT NULL,
 	customer_id VARCHAR(50),
 	table_id integer,
 	paid_status boolean,

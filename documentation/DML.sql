@@ -43,13 +43,13 @@ INSERT INTO public.m_menu(
 
 INSERT INTO public.m_order(
 	id, customer_id, table_id, paid_status, total_price, order_detail_id, reservation_number)
-	VALUES (1, '1', '1', TRUE, 100000, 1, NULL),
-	(2, '2', '2', TRUE, 100000, 2, NULL),
-	(3, '3', '3', TRUE, 100000, 3, NULL),
-	(4, '4', '4', TRUE, 100000, 4, NULL),
-	(5, '5', '5', TRUE, 100000, 5, NULL),
-	(6, '6', '6', TRUE, 100000, 6, NULL),
-	(7, '7', '7', TRUE, 100000, 7, NULL)
+	VALUES ('1', '1', '1', TRUE, 100000, 1, NULL),
+	('2', '2', '2', TRUE, 100000, 2, NULL),
+	('3', '3', '3', TRUE, 100000, 3, NULL),
+	('4', '4', '4', TRUE, 100000, 4, NULL),
+	('5', '5', '5', TRUE, 100000, 5, NULL),
+	('6', '6', '6', TRUE, 100000, 6, NULL),
+	('7', '7', '7', TRUE, 100000, 7, NULL)
 	;
 	
 INSERT INTO public.m_order_detail(
@@ -101,8 +101,8 @@ INSERT INTO public.m_table(
 	(13, '13', 1),
 	(14, '1', 1),
 	(15, '15', 1);
-UPDATE m_customer set id=7 where id='!'
-
+	
+	
 SELECT * FROM m_customer;
 SELECT * FROM m_employee;
 SELECT * FROM m_login;
@@ -113,3 +113,5 @@ SELECT * FROM m_reservation;
 SELECT * FROM m_suplier;
 SELECT * FROM m_suplier_detail;
 SELECT * FROM m_table;
+
+UPDATE m_order set id=7 where customer_id='7'
