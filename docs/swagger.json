@@ -29,14 +29,21 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       }
     },
     "/private/customer": {
@@ -52,6 +59,13 @@
         ],
         "parameters": [
           {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
             "name": "Body",
             "in": "body",
             "required": true,
@@ -66,8 +80,7 @@
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       },
       "put": {
         "summary": "Update Customer",
@@ -80,6 +93,13 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
           {
             "name": "Body",
             "in": "body",
@@ -96,8 +116,7 @@
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       },
       "get": {
         "summary": "Test (read only)",
@@ -132,6 +151,13 @@
         ],
         "parameters": [
           {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -144,8 +170,7 @@
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       },
       "delete": {
         "summary": "Delete Customer",
@@ -223,14 +248,21 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       },
       "post": {
         "summary": "New Order",
@@ -243,6 +275,13 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
           {
             "name": "Body",
             "in": "body",
@@ -258,8 +297,7 @@
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       }
     },
     "/private/menu": {
@@ -277,6 +315,13 @@
           "application/x-www-form-urlencoded"
         ],
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
           {
             "name": "menu_name",
             "in": "formData",
@@ -305,8 +350,7 @@
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       },
       "put": {
         "summary": "Update Menu",
@@ -322,6 +366,13 @@
           "application/x-www-form-urlencoded"
         ],
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
           {
             "name": "id",
             "in": "formData",
@@ -358,8 +409,7 @@
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       },
       "get": {
         "summary": "List Transaction",
@@ -394,6 +444,13 @@
         ],
         "parameters": [
           {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -406,8 +463,7 @@
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       }
     },
     "/private/menu/11": {
@@ -421,17 +477,24 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       }
     },
-    "/private/menu/images/4719f89a-4ad3-4f02-bcf1-4ca852741f36 - Notulen 7 Oktober 2022.txt": {
+    "/private/menu/images/{nama_file}": {
       "get": {
         "summary": "Download Menu Image",
         "tags": [
@@ -442,14 +505,28 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "nama_file",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       }
     },
     "/private/order/{id}": {
@@ -492,6 +569,13 @@
         ],
         "parameters": [
           {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -504,8 +588,7 @@
             "description": "",
             "headers": {}
           }
-        },
-        "security": []
+        }
       }
     }
   },

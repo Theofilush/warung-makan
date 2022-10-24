@@ -33,14 +33,21 @@ const docTemplate_swagger = `{
 		  "produces": [
 			"application/json"
 		  ],
-		  "parameters": [],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			}
+		  ],
 		  "responses": {
 			"200": {
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		}
 	  },
 	  "/private/customer": {
@@ -56,6 +63,13 @@ const docTemplate_swagger = `{
 		  ],
 		  "parameters": [
 			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
 			  "name": "Body",
 			  "in": "body",
 			  "required": true,
@@ -70,8 +84,7 @@ const docTemplate_swagger = `{
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		},
 		"put": {
 		  "summary": "Update Customer",
@@ -84,6 +97,13 @@ const docTemplate_swagger = `{
 			"application/json"
 		  ],
 		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
 			{
 			  "name": "Body",
 			  "in": "body",
@@ -100,8 +120,7 @@ const docTemplate_swagger = `{
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		},
 		"get": {
 		  "summary": "Test (read only)",
@@ -136,6 +155,13 @@ const docTemplate_swagger = `{
 		  ],
 		  "parameters": [
 			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
 			  "name": "id",
 			  "in": "path",
 			  "required": true,
@@ -148,8 +174,7 @@ const docTemplate_swagger = `{
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		},
 		"delete": {
 		  "summary": "Delete Customer",
@@ -227,14 +252,21 @@ const docTemplate_swagger = `{
 		  "produces": [
 			"application/json"
 		  ],
-		  "parameters": [],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			}
+		  ],
 		  "responses": {
 			"200": {
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		},
 		"post": {
 		  "summary": "New Order",
@@ -247,6 +279,13 @@ const docTemplate_swagger = `{
 			"application/json"
 		  ],
 		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
 			{
 			  "name": "Body",
 			  "in": "body",
@@ -262,8 +301,7 @@ const docTemplate_swagger = `{
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		}
 	  },
 	  "/private/menu": {
@@ -281,6 +319,13 @@ const docTemplate_swagger = `{
 			"application/x-www-form-urlencoded"
 		  ],
 		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
 			{
 			  "name": "menu_name",
 			  "in": "formData",
@@ -309,8 +354,7 @@ const docTemplate_swagger = `{
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		},
 		"put": {
 		  "summary": "Update Menu",
@@ -326,6 +370,13 @@ const docTemplate_swagger = `{
 			"application/x-www-form-urlencoded"
 		  ],
 		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
 			{
 			  "name": "id",
 			  "in": "formData",
@@ -362,8 +413,7 @@ const docTemplate_swagger = `{
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		},
 		"get": {
 		  "summary": "List Transaction",
@@ -398,6 +448,13 @@ const docTemplate_swagger = `{
 		  ],
 		  "parameters": [
 			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
 			  "name": "id",
 			  "in": "path",
 			  "required": true,
@@ -410,8 +467,7 @@ const docTemplate_swagger = `{
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		}
 	  },
 	  "/private/menu/11": {
@@ -425,17 +481,24 @@ const docTemplate_swagger = `{
 		  "produces": [
 			"application/json"
 		  ],
-		  "parameters": [],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			}
+		  ],
 		  "responses": {
 			"200": {
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		}
 	  },
-	  "/private/menu/images/4719f89a-4ad3-4f02-bcf1-4ca852741f36 - Notulen 7 Oktober 2022.txt": {
+	  "/private/menu/images/{nama_file}": {
 		"get": {
 		  "summary": "Download Menu Image",
 		  "tags": [
@@ -446,14 +509,28 @@ const docTemplate_swagger = `{
 		  "produces": [
 			"application/json"
 		  ],
-		  "parameters": [],
+		  "parameters": [
+			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
+			  "name": "nama_file",
+			  "in": "path",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			}
+		  ],
 		  "responses": {
 			"200": {
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		}
 	  },
 	  "/private/order/{id}": {
@@ -496,6 +573,13 @@ const docTemplate_swagger = `{
 		  ],
 		  "parameters": [
 			{
+			  "name": "Authorization",
+			  "in": "header",
+			  "required": false,
+			  "default": "Bearer {token}",
+			  "type": "string"
+			},
+			{
 			  "name": "id",
 			  "in": "path",
 			  "required": true,
@@ -508,8 +592,7 @@ const docTemplate_swagger = `{
 			  "description": "",
 			  "headers": {}
 			}
-		  },
-		  "security": []
+		  }
 		}
 	  }
 	},
