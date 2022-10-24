@@ -22,7 +22,7 @@ const docTemplate_swagger = `{
 	  "application/json"
 	],
 	"paths": {
-	  "/private/customer": {
+	  "/customer": {
 		"get": {
 		  "summary": "List Customer",
 		  "tags": [
@@ -41,7 +41,9 @@ const docTemplate_swagger = `{
 			}
 		  },
 		  "security": []
-		},
+		}
+	  },
+	  "/private/customer": {
 		"post": {
 		  "summary": "New Customer",
 		  "tags": [
@@ -53,13 +55,6 @@ const docTemplate_swagger = `{
 			"application/json"
 		  ],
 		  "parameters": [
-			{
-			  "name": "Authorization",
-			  "in": "header",
-			  "required": false,
-			  "default": "Bearer {token}",
-			  "type": "string"
-			},
 			{
 			  "name": "Body",
 			  "in": "body",
@@ -75,7 +70,8 @@ const docTemplate_swagger = `{
 			  "description": "",
 			  "headers": {}
 			}
-		  }
+		  },
+		  "security": []
 		},
 		"put": {
 		  "summary": "Update Customer",
@@ -88,13 +84,6 @@ const docTemplate_swagger = `{
 			"application/json"
 		  ],
 		  "parameters": [
-			{
-			  "name": "Authorization",
-			  "in": "header",
-			  "required": false,
-			  "default": "Bearer {token}",
-			  "type": "string"
-			},
 			{
 			  "name": "Body",
 			  "in": "body",
@@ -111,7 +100,27 @@ const docTemplate_swagger = `{
 			  "description": "",
 			  "headers": {}
 			}
-		  }
+		  },
+		  "security": []
+		},
+		"get": {
+		  "summary": "Test (read only)",
+		  "tags": [
+			"Authenticate"
+		  ],
+		  "operationId": "Test(readonly)",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
 		}
 	  },
 	  "/private/customer/{id}": {
@@ -127,13 +136,6 @@ const docTemplate_swagger = `{
 		  ],
 		  "parameters": [
 			{
-			  "name": "Authorization",
-			  "in": "header",
-			  "required": false,
-			  "default": "Bearer {token}",
-			  "type": "string"
-			},
-			{
 			  "name": "id",
 			  "in": "path",
 			  "required": true,
@@ -146,7 +148,8 @@ const docTemplate_swagger = `{
 			  "description": "",
 			  "headers": {}
 			}
-		  }
+		  },
+		  "security": []
 		},
 		"delete": {
 		  "summary": "Delete Customer",
@@ -212,6 +215,302 @@ const docTemplate_swagger = `{
 		  },
 		  "security": []
 		}
+	  },
+	  "/private/order": {
+		"get": {
+		  "summary": "List Menu",
+		  "tags": [
+			"Menu"
+		  ],
+		  "operationId": "ListMenu",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		},
+		"post": {
+		  "summary": "New Order",
+		  "tags": [
+			"order"
+		  ],
+		  "operationId": "NewOrder",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "Body",
+			  "in": "body",
+			  "required": true,
+			  "description": "",
+			  "schema": {
+				"$ref": "#/definitions/NewOrderRequest"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		}
+	  },
+	  "/private/menu": {
+		"post": {
+		  "summary": "New menu",
+		  "tags": [
+			"Menu"
+		  ],
+		  "operationId": "Newmenu",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "consumes": [
+			"application/x-www-form-urlencoded"
+		  ],
+		  "parameters": [
+			{
+			  "name": "menu_name",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "price",
+			  "in": "formData",
+			  "required": true,
+			  "type": "integer",
+			  "format": "int32",
+			  "description": ""
+			},
+			{
+			  "name": "images",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		},
+		"put": {
+		  "summary": "Update Menu",
+		  "tags": [
+			"Menu"
+		  ],
+		  "operationId": "UpdateMenu",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "consumes": [
+			"application/x-www-form-urlencoded"
+		  ],
+		  "parameters": [
+			{
+			  "name": "id",
+			  "in": "formData",
+			  "required": true,
+			  "type": "integer",
+			  "format": "int32",
+			  "description": ""
+			},
+			{
+			  "name": "menu_name",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			},
+			{
+			  "name": "price",
+			  "in": "formData",
+			  "required": true,
+			  "type": "integer",
+			  "format": "int32",
+			  "description": ""
+			},
+			{
+			  "name": "images",
+			  "in": "formData",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		},
+		"get": {
+		  "summary": "List Transaction",
+		  "tags": [
+			"order"
+		  ],
+		  "operationId": "ListTransaction",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		}
+	  },
+	  "/private/menu/{id}": {
+		"get": {
+		  "summary": "Find Menu By ID",
+		  "tags": [
+			"Menu"
+		  ],
+		  "operationId": "FindMenuByID",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "id",
+			  "in": "path",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		}
+	  },
+	  "/private/menu/11": {
+		"delete": {
+		  "summary": "Delete Menu",
+		  "tags": [
+			"Menu"
+		  ],
+		  "operationId": "DeleteMenu",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		}
+	  },
+	  "/private/menu/images/4719f89a-4ad3-4f02-bcf1-4ca852741f36 - Notulen 7 Oktober 2022.txt": {
+		"get": {
+		  "summary": "Download Menu Image",
+		  "tags": [
+			"Menu"
+		  ],
+		  "operationId": "DownloadMenuImage",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		}
+	  },
+	  "/private/order/{id}": {
+		"get": {
+		  "summary": "Find Transaction By ID",
+		  "tags": [
+			"order"
+		  ],
+		  "operationId": "FindTransactionByID",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "id",
+			  "in": "path",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		},
+		"delete": {
+		  "summary": "Delete Transaction",
+		  "tags": [
+			"order"
+		  ],
+		  "operationId": "DeleteTransaction",
+		  "deprecated": false,
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "name": "id",
+			  "in": "path",
+			  "required": true,
+			  "type": "string",
+			  "description": ""
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "",
+			  "headers": {}
+			}
+		  },
+		  "security": []
+		}
 	  }
 	},
 	"definitions": {
@@ -264,6 +563,134 @@ const docTemplate_swagger = `{
 		  "username",
 		  "password"
 		]
+	  },
+	  "NewOrderRequest": {
+		"title": "NewOrderRequest",
+		"example": {
+		  "id": "1234567892",
+		  "customer_id": "1",
+		  "table_id": 1,
+		  "paid_status": true,
+		  "total_price": 50000,
+		  "order_detail_id": 56,
+		  "details": {
+			"order_details": [
+			  {
+				"id": 1234567894,
+				"menu_id": 1,
+				"quantity": 2,
+				"order_id": 56
+			  },
+			  {
+				"id": 1234567895,
+				"menu_id": 2,
+				"quantity": 1,
+				"order_id": 56
+			  }
+			]
+		  }
+		},
+		"type": "object",
+		"properties": {
+		  "id": {
+			"type": "string"
+		  },
+		  "customer_id": {
+			"type": "string"
+		  },
+		  "table_id": {
+			"type": "integer",
+			"format": "int32"
+		  },
+		  "paid_status": {
+			"type": "boolean"
+		  },
+		  "total_price": {
+			"type": "integer",
+			"format": "int32"
+		  },
+		  "order_detail_id": {
+			"type": "integer",
+			"format": "int32"
+		  },
+		  "details": {
+			"$ref": "#/definitions/Details"
+		  }
+		},
+		"required": [
+		  "id",
+		  "customer_id",
+		  "table_id",
+		  "paid_status",
+		  "total_price",
+		  "order_detail_id",
+		  "details"
+		]
+	  },
+	  "Details": {
+		"title": "Details",
+		"example": {
+		  "order_details": [
+			{
+			  "id": 1234567894,
+			  "menu_id": 1,
+			  "quantity": 2,
+			  "order_id": 56
+			},
+			{
+			  "id": 1234567895,
+			  "menu_id": 2,
+			  "quantity": 1,
+			  "order_id": 56
+			}
+		  ]
+		},
+		"type": "object",
+		"properties": {
+		  "order_details": {
+			"type": "array",
+			"items": {
+			  "$ref": "#/definitions/OrderDetail"
+			}
+		  }
+		},
+		"required": [
+		  "order_details"
+		]
+	  },
+	  "OrderDetail": {
+		"title": "OrderDetail",
+		"example": {
+		  "id": 1234567894,
+		  "menu_id": 1,
+		  "quantity": 2,
+		  "order_id": 56
+		},
+		"type": "object",
+		"properties": {
+		  "id": {
+			"type": "integer",
+			"format": "int32"
+		  },
+		  "menu_id": {
+			"type": "integer",
+			"format": "int32"
+		  },
+		  "quantity": {
+			"type": "integer",
+			"format": "int32"
+		  },
+		  "order_id": {
+			"type": "integer",
+			"format": "int32"
+		  }
+		},
+		"required": [
+		  "id",
+		  "menu_id",
+		  "quantity",
+		  "order_id"
+		]
 	  }
 	},
 	"security": [],
@@ -273,6 +700,12 @@ const docTemplate_swagger = `{
 	  },
 	  {
 		"name": "Authenticate"
+	  },
+	  {
+		"name": "Menu"
+	  },
+	  {
+		"name": "order"
 	  }
 	]
   }`
@@ -280,11 +713,11 @@ const docTemplate_swagger = `{
 // SwaggerInfo_swagger holds exported Swagger Info so clients can modify it
 var SwaggerInfo_swagger = &swag.Spec{
 	Version:          "1.0",
-	Host:             "petstore.swagger.io:8080",
+	Host:             "localhost:8181",
 	BasePath:         "/v1",
 	Schemes:          []string{},
 	Title:            "Warung Makan API",
-	Description:      "This is a sample server Petstore server.",
+	Description:      "This is a simple warung makan server.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate_swagger,
 }
