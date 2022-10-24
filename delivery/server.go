@@ -7,6 +7,7 @@ import (
 	"github.com/Theofilush/warung-makan/config"
 	"github.com/Theofilush/warung-makan/delivery/controller/customer"
 	"github.com/Theofilush/warung-makan/delivery/controller/menu"
+	OrdContr "github.com/Theofilush/warung-makan/delivery/controller/order"
 	"github.com/Theofilush/warung-makan/delivery/middleware"
 	"github.com/Theofilush/warung-makan/manager"
 	"github.com/Theofilush/warung-makan/model"
@@ -76,6 +77,7 @@ func (s *Server) initController() {
 
 	customer.NewCustomerController(publicRoute, s.useCaseManager.CustomerUseCase(), tokenMdw)
 	menu.NewMenuController(publicRoute, s.useCaseManager.MenuUseCase(), tokenMdw)
+	OrdContr.NewOrderController(publicRoute, s.useCaseManager.OrderUseCase(), tokenMdw)
 }
 
 func (s *Server) Run() {

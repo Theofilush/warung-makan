@@ -38,6 +38,7 @@ func (i *infraManager) initDb() {
 	i.db = db
 	fmt.Println("DB Connected")
 }
+
 func (i *infraManager) DbConn() *sql.DB {
 	return i.db
 }

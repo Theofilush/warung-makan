@@ -114,4 +114,27 @@ SELECT * FROM m_suplier;
 SELECT * FROM m_suplier_detail;
 SELECT * FROM m_table;
 
-UPDATE m_order set id=7 where customer_id='7'
+
+
+
+
+
+select * from m_order join m_order_detail on m_order.order_detail_id = m_order_detail.order_id
+
+
+
+select 
+m_order.id, 
+m_order.customer_id, 
+m_order.table_id, 
+m_order.paid_status, 
+m_order.total_price, 
+m_order.order_detail_id, 
+m_order_detail.menu_id, 
+m_order_detail.quantity 
+from m_order 
+join m_order_detail on m_order.order_detail_id = m_order_detail.order_id
+where m_order.id='1234567892'
+
+
+
